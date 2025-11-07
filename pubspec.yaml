@@ -1,0 +1,69 @@
+name: tvc
+description: "PS club tv controller"
+
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^0.13.6
+  intl: ^0.18.0
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/controller.png
+    - assets/images/background.png
+    - assets/images/bg1.jpg
+  fonts:
+    - family: AlumniSansCollegiateOne
+      fonts:
+        - asset: assets/fonts/alumni_sans_collegiate_one/AlumniSansCollegiateOne-Regular.ttf
+    - family: AlumniSans
+      fonts:
+        - asset: assets/fonts/alumni_sans/AlumniSans-Black.ttf
+          weight: 900
+        - asset: assets/fonts/alumni_sans/AlumniSans-BlackItalic.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-Bold.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-BoldItalic.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/alumni_sans/AlumniSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-ExtraLight.ttf
+          weight: 100
+        - asset: assets/fonts/alumni_sans/AlumniSans-ExtraLightItalic.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-Italic.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-Light.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-LightItalic.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-Medium.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-MediumItalic.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-Regular.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-SemiBold.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-SemiBoldItalic.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-Thin.ttf
+        - asset: assets/fonts/alumni_sans/AlumniSans-ThinItalic.ttf
+    - family: Tektur
+      fonts:
+        - asset: assets/fonts/tektur/Tektur-Black.ttf
+        - asset: assets/fonts/tektur/Tektur-Bold.ttf
+        - asset: assets/fonts/tektur/Tektur-ExtraBold.ttf
+        - asset: assets/fonts/tektur/Tektur-Medium.ttf
+        - asset: assets/fonts/tektur/Tektur-Regular.ttf
+        - asset: assets/fonts/tektur/Tektur-SemiBold.ttf
+
