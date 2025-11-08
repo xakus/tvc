@@ -54,9 +54,15 @@ class _ClockWidgetState extends State<ClockWidget> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(dateString, style: AppTextStyles.date(context)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(dateString, style: AppTextStyles.date(context)),
+            Text(weekDayString, style: AppTextStyles.weekName(context)),
+          ],
+        ),
         Text(timeString, style: AppTextStyles.time(context)),
-        Text(weekDayString, style: AppTextStyles.weekName(context)),
+
       ],
     );
   }

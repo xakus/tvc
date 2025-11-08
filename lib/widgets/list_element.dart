@@ -26,7 +26,7 @@ class ListElement extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            flex: 8,
+            flex: 40,
             child: NeumorphicCard(
               center: false,
               child: Text(name, style: AppTextStyles.menuName(context)),
@@ -34,7 +34,7 @@ class ListElement extends StatelessWidget {
           ),
           SizedBox(width: Utils.getHeightSize(context, padding)),
           Expanded(
-            flex: 2,
+            flex: 13,
             child: NeumorphicCard(
               child: Text(number, style: AppTextStyles.menuPercent(context)),
             ),

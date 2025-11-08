@@ -12,7 +12,7 @@ class SalesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: double.infinity,
       child: Column(
@@ -40,7 +40,7 @@ class SalesCard extends StatelessWidget {
                     vertical: Utils.getHeightSize(context, 5),
                   ),
                   child: SizedBox(
-                    height: Utils.getHeightSize(context, 40),
+                    height: Utils.getHeightSize(context, 35),
                     child: ListElement(
                       name: items[index].product,
                       number: "${items[index].price.toStringAsFixed(2)} azn",

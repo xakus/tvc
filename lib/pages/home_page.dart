@@ -34,6 +34,13 @@ class _HomePageState extends State<HomePage> {
     Sales(product: "Rulet", price: 1),
     Sales(product: "Şokolad", price: 2),
     Sales(product: "Snikers", price: 1.5),
+    Sales(product: "Çips", price: 3.5),
+    Sales(product: "Kalyan", price: 10.5),
+    Sales(product: "Set: Kalyan Çay Ləpə", price: 25),
+    Sales(product: "Set: Kalyan Çay Snikers", price: 20.5),
+    Sales(product: "Set: Kalyan Çay Şokolad", price: 20.5),
+    Sales(product: "Set: Kalyan Çay Şokolad", price: 20.5),
+    Sales(product: "Set: Kalyan Çay Şokolad", price: 20.5),
   ];
 
   String tableName = "PS3 Stol1";
@@ -59,24 +66,19 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: EdgeInsetsGeometry.all(40),
                     child: Container(
-                      height: Utils.getHeightSize(context, 120),
-                      width: Utils.getHeightSize(context, 200),
+                      height: Utils.getHeightSize(context, 100),
+                      width: Utils.getHeightSize(context, 250),
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            AppColors.gradientBlueLight,
-                            AppColors.gradientPurpLight,
-                          ],
-                        ),
+                        color: AppColors.gradientBlueLight,
                         borderRadius: BorderRadius.all(
                           Radius.circular(Utils.getHeightSize(context, 10)),
                         ),
                         border: Border.all(
                           width: 2,
-                          color: AppColors.gradientPurpLight,
+                          color: Colors.white12,
                         ),
                         boxShadow: [
-                          BoxShadow(color: AppColors.gradientPurpLightShadow,blurRadius: 5,blurStyle: BlurStyle.outer,offset: Offset(0, 0))
+                          BoxShadow(color: AppColors.gradientBlueLightShadow,blurRadius: 5,blurStyle: BlurStyle.outer,offset: Offset(0, 0))
                         ]
                       ),
                       child: ClockWidget(),
@@ -111,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: Utils.getHeightSize(context, 123)),
+                            SizedBox(height: Utils.getHeightSize(context, 60)),
                             Expanded(
                               child: Row(
                                 children: [

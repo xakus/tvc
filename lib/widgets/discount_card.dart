@@ -13,7 +13,7 @@ class DiscountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: double.infinity,
       child: Column(
@@ -44,7 +44,7 @@ class DiscountCard extends StatelessWidget {
                     vertical: Utils.getHeightSize(context, 5),
                   ),
                   child: SizedBox(
-                    height: Utils.getHeightSize(context, 40),
+                    height: Utils.getHeightSize(context, 35),
                     child: ListElement(
                       name: items[index].title,
                       number: "${items[index].percent}%",

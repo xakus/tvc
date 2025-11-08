@@ -93,7 +93,7 @@ class AppTextStyles {
   );
   static TextStyle date(BuildContext context) => TextStyle(
     color: AppColors.blue,
-    fontSize: _getFontSize(context, 16),
+    fontSize: _getFontSize(context, 20),
     fontWeight: FontWeight.w600,
     height: .9,
   );
