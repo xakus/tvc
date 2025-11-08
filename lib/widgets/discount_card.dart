@@ -7,7 +7,7 @@ import '../theme/app_text_styles.dart';
 import '../theme/app_colors.dart';
 
 class DiscountCard extends StatelessWidget {
-   final List<Discount> items;
+  final List<Discount> items;
 
   const DiscountCard({super.key, required this.items});
 
@@ -34,16 +34,23 @@ class DiscountCard extends StatelessWidget {
           // Список, занимающий всё оставшееся пространство
           Expanded(
             child: ListView.builder(
-              padding:  EdgeInsets.symmetric(vertical: Utils.getHeightSize(context, 10)),
+              padding: EdgeInsets.symmetric(
+                vertical: Utils.getHeightSize(context, 10),
+              ),
               itemCount: items.length,
               itemBuilder: (context, index) {
                 return Container(
-                  padding:  EdgeInsets.symmetric(vertical: Utils.getHeightSize(context, 5)),
+                  padding: EdgeInsets.symmetric(
+                    vertical: Utils.getHeightSize(context, 5),
+                  ),
                   child: SizedBox(
                     height: Utils.getHeightSize(context, 40),
-                    child: ListElement(name: items[index].title, number: "${items[index].percent}%",)
+                    child: ListElement(
+                      name: items[index].title,
+                      number: "${items[index].percent}%",
                     ),
-                  );
+                  ),
+                );
               },
             ),
           ),

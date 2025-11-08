@@ -12,8 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.6
-  intl: ^0.18.0
+  dio: ^5.9.0
 
   cupertino_icons: ^1.0.8
 
@@ -66,4 +65,15 @@ flutter:
         - asset: assets/fonts/tektur/Tektur-Medium.ttf
         - asset: assets/fonts/tektur/Tektur-Regular.ttf
         - asset: assets/fonts/tektur/Tektur-SemiBold.ttf
+    - family: MartianMono
+      fonts:
+        - asset: assets/fonts/martian_mono/MartianMono-Thin.ttf
+        - asset: assets/fonts/martian_mono/MartianMono-Light.ttf
+        - asset: assets/fonts/martian_mono/MartianMono-Medium.ttf
+        - asset: assets/fonts/martian_mono/MartianMono-Regular.ttf
+        - asset: assets/fonts/martian_mono/MartianMono-SemiBold.ttf
+        - asset: assets/fonts/martian_mono/MartianMono-Bold.ttf
+        - asset: assets/fonts/martian_mono/MartianMono-ExtraBold.ttf
+        - asset: assets/fonts/martian_mono/MartianMono-ExtraLight.ttf
+
 

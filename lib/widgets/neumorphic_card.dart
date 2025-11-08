@@ -6,7 +6,7 @@ import '../theme/app_colors.dart';
 class NeumorphicCard extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry padding;
-  late  double borderRadius;
+  late double borderRadius;
   final double borderWidth;
   final bool center;
 
@@ -15,12 +15,12 @@ class NeumorphicCard extends StatelessWidget {
     required this.child,
     this.padding = const EdgeInsets.all(0),
     this.borderWidth = 3,
-    this.center =true,
+    this.center = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    borderRadius =  Utils.getHeightSize(context, 10);
+    borderRadius = Utils.getHeightSize(context, 10);
     return CustomPaint(
       painter: GradientBorderPainter(
         gradient: const LinearGradient(
@@ -42,10 +42,12 @@ class NeumorphicCard extends StatelessWidget {
               color: AppColors.background,
               borderRadius: BorderRadius.circular(borderRadius),
             ),
-            child: center ? Center(child: child) :Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Align(alignment: Alignment.centerLeft,child: child),
-            ),
+            child: center
+                ? Center(child: child)
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Align(alignment: Alignment.centerLeft, child: child),
+                  ),
           ),
         ),
       ),

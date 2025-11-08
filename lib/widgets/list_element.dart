@@ -23,15 +23,24 @@ class ListElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: Utils.getHeightSize(context, height),
-      child:
-         Row(
-          children: [
-            Expanded(flex: 8, child: NeumorphicCard(center: false,child: Text(name,style: AppTextStyles.menuName(context),),)),
-            SizedBox(width: Utils.getHeightSize(context,padding),),
-            Expanded(flex: 2,child: NeumorphicCard(child: Text(number,style: AppTextStyles.menuPercent(context),),)),
-          ],
-        ),
-
+      child: Row(
+        children: [
+          Expanded(
+            flex: 8,
+            child: NeumorphicCard(
+              center: false,
+              child: Text(name, style: AppTextStyles.menuName(context)),
+            ),
+          ),
+          SizedBox(width: Utils.getHeightSize(context, padding)),
+          Expanded(
+            flex: 2,
+            child: NeumorphicCard(
+              child: Text(number, style: AppTextStyles.menuPercent(context)),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

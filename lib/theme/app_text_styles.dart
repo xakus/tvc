@@ -5,7 +5,7 @@ class AppTextStyles {
   static double _getFontSize(BuildContext context, double size) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    double s = height<width ? height : width;
+    double s = height < width ? height : width;
     const double hConst = 1080;
     double percent = s / hConst;
     return size * percent;
@@ -79,10 +79,29 @@ class AppTextStyles {
     height: 1,
   );
   static TextStyle gameDiscount(BuildContext context) => TextStyle(
-    color: AppColors.green,
+    color: AppColors.blue,
     fontSize: _getFontSize(context, 40),
     fontFamily: 'AlumniSans',
     fontWeight: FontWeight.w300,
+    height: .9,
+  );
+  static TextStyle time(BuildContext context) => TextStyle(
+    color: AppColors.blue,
+    fontSize: _getFontSize(context, 40),
+    fontWeight: FontWeight.w600,
+    height: .9,
+  );
+  static TextStyle date(BuildContext context) => TextStyle(
+    color: AppColors.blue,
+    fontSize: _getFontSize(context, 16),
+    fontWeight: FontWeight.w600,
+    height: .9,
+  );
+  static TextStyle weekName(BuildContext context) => TextStyle(
+    color: AppColors.blue,
+    fontSize: _getFontSize(context, 20),
+    fontFamily: 'MartianMono',
+    fontWeight: FontWeight.w500,
     height: .9,
   );
 }
