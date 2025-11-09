@@ -1,14 +1,48 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:tvc/models/sales.dart';
+import 'package:tvc/services/service.dart';
 import 'package:tvc/widgets/list_element.dart';
 import 'package:tvc/widgets/neumorphic_card.dart';
-import '../models/sales.dart';
+
 import '../models/utils.dart';
 import '../theme/app_text_styles.dart';
 
-class SalesCard extends StatelessWidget {
-  final List<Sales> items;
+class SalesCard extends StatefulWidget {
+  const SalesCard({super.key});
 
-  const SalesCard({super.key, required this.items});
+  @override
+  State<SalesCard> createState() => _SalesCardState();
+}
+
+class _SalesCardState extends State<SalesCard> {
+  List<Sales> _sales = [];
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSales();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _loadSales());
+  }
+
+  Future<void> _loadSales() async {
+    try {
+      setState(() {
+        Service().getSales().then((value) => _sales = value);
+      });
+    } catch (e) {
+      // можно добавить лог или Snackbar
+      debugPrint("Ошибка при загрузке sales: $e");
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +61,15 @@ class SalesCard extends StatelessWidget {
             ),
           ),
 
-          // Список, занимающий всё оставшееся пространство
+          // Список
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.symmetric(
                 vertical: Utils.getHeightSize(context, 10),
               ),
-              itemCount: items.length,
+              itemCount: _sales.length,
               itemBuilder: (context, index) {
+                final item = _sales[index];
                 return Container(
                   padding: EdgeInsets.symmetric(
                     vertical: Utils.getHeightSize(context, 5),
@@ -42,8 +77,8 @@ class SalesCard extends StatelessWidget {
                   child: SizedBox(
                     height: Utils.getHeightSize(context, 35),
                     child: ListElement(
-                      name: items[index].product,
-                      number: "${items[index].price.toStringAsFixed(2)} azn",
+                      name: item.product,
+                      number: "${item.price.toStringAsFixed(2)} azn",
                     ),
                   ),
                 );

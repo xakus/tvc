@@ -1,15 +1,47 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:tvc/widgets/list_element.dart';
 import 'package:tvc/widgets/neumorphic_card.dart';
+
 import '../models/discount.dart';
 import '../models/utils.dart';
+import '../services/service.dart';
 import '../theme/app_text_styles.dart';
-import '../theme/app_colors.dart';
 
-class DiscountCard extends StatelessWidget {
-  final List<Discount> items;
+class DiscountCard extends StatefulWidget {
+  const DiscountCard({super.key});
+  @override
+  State<DiscountCard> createState() => _DiscountCardState();
+}
 
-  const DiscountCard({super.key, required this.items});
+class _DiscountCardState extends State<DiscountCard> {
+  List<Discount> _discount = [];
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDiscount();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _loadDiscount());
+  }
+
+  Future<void> _loadDiscount() async {
+    try {
+      setState(() {
+        Service().getDiscount().then((value) => _discount = value);
+      });
+    } catch (e) {
+      // можно добавить лог или Snackbar
+      debugPrint("Ошибка при загрузке sales: $e");
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +69,7 @@ class DiscountCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 vertical: Utils.getHeightSize(context, 10),
               ),
-              itemCount: items.length,
+              itemCount: _discount.length,
               itemBuilder: (context, index) {
                 return Container(
                   padding: EdgeInsets.symmetric(
@@ -46,8 +78,8 @@ class DiscountCard extends StatelessWidget {
                   child: SizedBox(
                     height: Utils.getHeightSize(context, 35),
                     child: ListElement(
-                      name: items[index].title,
-                      number: "${items[index].percent}%",
+                      name: _discount[index].title,
+                      number: "${_discount[index].percent}%",
                     ),
                   ),
                 );

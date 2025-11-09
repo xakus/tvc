@@ -15,13 +15,13 @@ class _ClockWidgetState extends State<ClockWidget> {
 
   // Список дней недели на азербайджанском
   final List<String> _weekDaysAZ = [
-    "Bazar ertəsi",       // Понедельник
-    "Çərşənbə axşamı",   // Вторник
-    "Çərşənbə",           // Среда
-    "Cümə axşamı",        // Четверг
-    "Cümə",               // Пятница
-    "Şənbə",              // Суббота
-    "Bazar",              // Воскресенье
+    "Bazar ertəsi", // Понедельник
+    "Çərşənbə axşamı", // Вторник
+    "Çərşənbə", // Среда
+    "Cümə axşamı", // Четверг
+    "Cümə", // Пятница
+    "Şənbə", // Суббота
+    "Bazar", // Воскресенье
   ];
 
   @override
@@ -62,7 +62,6 @@ class _ClockWidgetState extends State<ClockWidget> {
           ],
         ),
         Text(timeString, style: AppTextStyles.time(context)),
-
       ],
     );
   }

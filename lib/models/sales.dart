@@ -7,7 +7,9 @@ class Sales {
   factory Sales.fromJson(Map<String, dynamic> json) {
     return Sales(
       product: json['product'] ?? '',
-      price: (json['price'] ?? 0) as double,
+      price: (json['price'] is int)
+          ? (json['price'] as int).toDouble()
+          : (json['price'] ?? 0.0) as double,
     );
   }
 }

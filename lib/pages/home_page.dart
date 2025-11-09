@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tvc/models/sales.dart';
 import 'package:tvc/theme/app_colors.dart';
 import 'package:tvc/theme/app_text_styles.dart';
 import 'package:tvc/widgets/clock_widget.dart';
 import 'package:tvc/widgets/game_price_card.dart';
 import 'package:tvc/widgets/neumorphic_card.dart';
 import 'package:tvc/widgets/sales_card.dart';
-import '../models/discount.dart';
+
 import '../models/utils.dart';
 import '../widgets/discount_card.dart';
 
@@ -19,30 +18,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // Пример данных (в будущем можно заменить данными с сервера)
-  final List<Discount> discounts = [
-    Discount(title: "Şənbə saat 10:00-18:00", percent: 15),
-    Discount(title: "Çərşənbə axşamı saat 09:00-18:00", percent: 10),
-    Discount(title: "Cümə butun gun", percent: 5),
-    Discount(title: "3 saatdan artiq oynayana", percent: 25),
-  ];
-
-  final List<Sales> sales = [
-    Sales(product: "Dondurma", price: 2),
-    Sales(product: "Pepsi", price: 2.5),
-    Sales(product: "Coffee", price: 2.5),
-    Sales(product: "Çay", price: 1),
-    Sales(product: "Rulet", price: 1),
-    Sales(product: "Şokolad", price: 2),
-    Sales(product: "Snikers", price: 1.5),
-    Sales(product: "Çips", price: 3.5),
-    Sales(product: "Kalyan", price: 10.5),
-    Sales(product: "Set: Kalyan Çay Ləpə", price: 25),
-    Sales(product: "Set: Kalyan Çay Snikers", price: 20.5),
-    Sales(product: "Set: Kalyan Çay Şokolad", price: 20.5),
-    Sales(product: "Set: Kalyan Çay Şokolad", price: 20.5),
-    Sales(product: "Set: Kalyan Çay Şokolad", price: 20.5),
-  ];
-
   String tableName = "PS3 Stol1";
   String pricePerHour = "1 saat - 3 azn";
 
@@ -66,20 +41,22 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: EdgeInsetsGeometry.all(40),
                     child: Container(
-                      height: Utils.getHeightSize(context, 100),
+                      height: Utils.getHeightSize(context, 80),
                       width: Utils.getHeightSize(context, 250),
                       decoration: BoxDecoration(
                         color: AppColors.gradientBlueLight,
                         borderRadius: BorderRadius.all(
                           Radius.circular(Utils.getHeightSize(context, 10)),
                         ),
-                        border: Border.all(
-                          width: 2,
-                          color: Colors.white12,
-                        ),
+                        border: Border.all(width: 2, color: Colors.white12),
                         boxShadow: [
-                          BoxShadow(color: AppColors.gradientBlueLightShadow,blurRadius: 5,blurStyle: BlurStyle.outer,offset: Offset(0, 0))
-                        ]
+                          BoxShadow(
+                            color: AppColors.gradientBlueLightShadow,
+                            blurRadius: 5,
+                            blurStyle: BlurStyle.outer,
+                            offset: Offset(0, 0),
+                          ),
+                        ],
                       ),
                       child: ClockWidget(),
                     ),
@@ -113,14 +90,12 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: Utils.getHeightSize(context, 60)),
+                            SizedBox(height: Utils.getHeightSize(context, 20)),
                             Expanded(
                               child: Row(
                                 children: [
                                   // Блок со скидками
-                                  Expanded(
-                                    child: DiscountCard(items: discounts),
-                                  ),
+                                  Expanded(child: DiscountCard()),
                                   const SizedBox(width: 40),
 
                                   // Средний блок (например, цена за час)
@@ -138,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                                   const SizedBox(width: 40),
 
                                   // Блок с продажами
-                                  Expanded(child: SalesCard(items: sales)),
+                                  Expanded(child: SalesCard()),
                                 ],
                               ),
                             ),
