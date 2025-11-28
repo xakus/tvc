@@ -11,6 +11,7 @@ class AppColors {
   static const Color gradientPurpLightShadow = Color(0x50FF88FF);
   static const Color gradientBlueLightShadow = Color(0x508888FF);
   static const Color success = Color(0xFF4CAF50);
-  static const Color warning = Color(0xFFFFC107);
-  static const Color danger = Color(0xFFF44336);
+  static const Color blocked = Color(0xFFFF0000);
+  static const Color warning = Color(0xFFFF0000);
+  static const Color darkLight = Color.fromARGB(255, 200, 255, 255);
 }

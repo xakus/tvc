@@ -1,5 +1,7 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
+
 import '../theme/app_text_styles.dart';
 
 class ClockWidget extends StatefulWidget {
@@ -52,15 +54,12 @@ class _ClockWidgetState extends State<ClockWidget> {
     final weekDayString = _weekDaysAZ[_now.weekday - 1]; // weekday: 1-7
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(dateString, style: AppTextStyles.date(context)),
-            Text(weekDayString, style: AppTextStyles.weekName(context)),
-          ],
-        ),
+        Text(dateString, style: AppTextStyles.date(context)),
+
+        Text(weekDayString, style: AppTextStyles.weekName(context)),
+
         Text(timeString, style: AppTextStyles.time(context)),
       ],
     );

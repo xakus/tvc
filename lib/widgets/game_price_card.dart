@@ -3,12 +3,13 @@ import 'package:tvc/models/utils.dart';
 import 'package:tvc/theme/app_text_styles.dart';
 import 'package:tvc/widgets/neumorphic_card.dart';
 
-class GamePriceCard extends StatefulWidget {
-  @override
-  State<GamePriceCard> createState() => _GamePriceCardState();
-}
+import '../models/info_schedule.dart';
 
-class _GamePriceCardState extends State<GamePriceCard> {
+class GamePriceCard extends StatelessWidget {
+  final InfoSchedule info;
+
+  const GamePriceCard({super.key, required this.info});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,7 +18,9 @@ class _GamePriceCardState extends State<GamePriceCard> {
           height: Utils.getHeightSize(context, 60),
           child: NeumorphicCard(
             child: Text(
-              "12:44---13:32",
+              info.done
+                  ? "${info.startTime.hour.toString().padLeft(2, '0')}:${info.startTime.minute.toString().padLeft(2, '0')}---${info.endTime.hour.toString().padLeft(2, '0')}:${info.endTime.minute.toString().padLeft(2, '0')}"
+                  : "${info.startTime.hour.toString().padLeft(2, '0')}:${info.startTime.minute.toString().padLeft(2, '0')}---vaxt hələ bitməyib",
               style: AppTextStyles.gameTimeBetween(context),
             ),
           ),
@@ -26,10 +29,15 @@ class _GamePriceCardState extends State<GamePriceCard> {
         SizedBox(
           height: Utils.getHeightSize(context, 80),
           child: NeumorphicCard(
-            child: Text(
-              "1 saat 23 dəqiqə oynamısız",
-              style: AppTextStyles.gamePrice(context),
-            ),
+            child: (info.done || info.unlimit)
+                ? Text(
+                    "${(info.timeLeft / 60).toInt()} saat ${info.timeLeft % 60} dəqiqə oynamısız",
+                    style: AppTextStyles.gamePrice(context),
+                  )
+                : Text(
+                    "${(info.timeLeft / 60).toInt()} saat ${info.timeLeft % 60} dəqiqə qalıb",
+                    style: AppTextStyles.gamePrice(context),
+                  ),
           ),
         ),
         SizedBox(height: Utils.getHeightSize(context, 10)),
@@ -37,14 +45,16 @@ class _GamePriceCardState extends State<GamePriceCard> {
           height: Utils.getHeightSize(context, 130),
           child: NeumorphicCard(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                info.discountPercent > 0.1
+                    ? Text(
+                        "${(info.basePrice / 100).toStringAsFixed(2)} azn ${info.discountPercent}% endirim",
+                        style: AppTextStyles.gameDiscount(context),
+                      )
+                    : SizedBox.shrink(),
                 Text(
-                  "4.15azn 15% endirim",
-                  style: AppTextStyles.gameDiscount(context),
-                ),
-                Text(
-                  "3 manat 53 qəpik",
+                  "${(info.totalPrice / 100).toInt()} manat ${(info.totalPrice % 100).toInt()} qəpik",
                   style: AppTextStyles.gameTime(context),
                 ),
               ],

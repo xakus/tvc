@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
+
 import 'pages/home_page.dart';
 import 'theme/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   // Must add this line.
   await windowManager.ensureInitialized();
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'app_colors.dart';
 
 class AppTextStyles {
@@ -12,11 +13,11 @@ class AppTextStyles {
   }
 
   static TextStyle title(BuildContext context) => TextStyle(
-    color: Color.fromARGB(255, 200, 255, 255),
+    color: AppColors.darkLight,
     fontSize: _getFontSize(context, 100),
     fontFamily: 'Tektur',
     fontWeight: FontWeight.w700,
-    height: 1,
+    height: 0.4,
   );
 
   static TextStyle subtitle(BuildContext context) => TextStyle(
@@ -24,7 +25,15 @@ class AppTextStyles {
     fontSize: _getFontSize(context, 50),
     fontFamily: 'AlumniSans',
     fontWeight: FontWeight.bold,
-    height: 1,
+    height: 0.1,
+  );
+
+  static TextStyle clubName(BuildContext context) => TextStyle(
+    color: AppColors.borderGradientBlue,
+    fontSize: _getFontSize(context, 40),
+    fontFamily: 'Tektur',
+    fontWeight: FontWeight.w900,
+    height: 0.1,
   );
 
   static TextStyle menuTitle(BuildContext context) => TextStyle(
@@ -42,6 +51,7 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     height: 0.1,
   );
+
   static TextStyle menuPercent(BuildContext context) => TextStyle(
     color: Colors.white,
     fontSize: _getFontSize(context, 25),
@@ -49,6 +59,7 @@ class AppTextStyles {
     fontWeight: FontWeight.w800,
     height: 1,
   );
+
   static TextStyle menuPrice(BuildContext context) => TextStyle(
     color: AppColors.blue,
     fontSize: _getFontSize(context, 25),
@@ -64,6 +75,7 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
     height: 1,
   );
+
   static TextStyle gameTime(BuildContext context) => TextStyle(
     color: AppColors.green,
     fontSize: _getFontSize(context, 70),
@@ -71,6 +83,7 @@ class AppTextStyles {
     fontWeight: FontWeight.w900,
     height: 0.9,
   );
+
   static TextStyle gamePrice(BuildContext context) => TextStyle(
     color: AppColors.green,
     fontSize: _getFontSize(context, 50),
@@ -78,6 +91,7 @@ class AppTextStyles {
     fontWeight: FontWeight.w900,
     height: 1,
   );
+
   static TextStyle gameDiscount(BuildContext context) => TextStyle(
     color: AppColors.blue,
     fontSize: _getFontSize(context, 40),
@@ -85,22 +99,33 @@ class AppTextStyles {
     fontWeight: FontWeight.w300,
     height: .9,
   );
+
   static TextStyle time(BuildContext context) => TextStyle(
-    color: AppColors.blue,
-    fontSize: _getFontSize(context, 40),
+    color: AppColors.darkLight,
+    fontSize: _getFontSize(context, 46),
     fontWeight: FontWeight.w600,
     height: .9,
   );
+
   static TextStyle date(BuildContext context) => TextStyle(
-    color: AppColors.blue,
-    fontSize: _getFontSize(context, 20),
+    color: AppColors.darkLight,
+    fontSize: _getFontSize(context, 23),
     fontWeight: FontWeight.w600,
     height: .9,
   );
+
   static TextStyle weekName(BuildContext context) => TextStyle(
     color: AppColors.blue,
-    fontSize: _getFontSize(context, 20),
+    fontSize: _getFontSize(context, 18),
     fontFamily: 'MartianMono',
+    fontWeight: FontWeight.w500,
+    height: .9,
+  );
+
+  static TextStyle blocked(BuildContext context) => TextStyle(
+    color: AppColors.blocked,
+    fontSize: _getFontSize(context, 40),
+    fontFamily: 'Tektur',
     fontWeight: FontWeight.w500,
     height: .9,
   );

@@ -1,11 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:tvc/models/app_config.dart';
+import 'package:tvc/models/settings_dto.dart';
+import 'package:tvc/services/config_service.dart';
+import 'package:tvc/services/service.dart';
 import 'package:tvc/theme/app_colors.dart';
 import 'package:tvc/theme/app_text_styles.dart';
+import 'package:tvc/widgets/blocked_card.dart';
 import 'package:tvc/widgets/clock_widget.dart';
 import 'package:tvc/widgets/game_price_card.dart';
 import 'package:tvc/widgets/neumorphic_card.dart';
 import 'package:tvc/widgets/sales_card.dart';
 
+import '../models/info_schedule.dart';
 import '../models/utils.dart';
 import '../widgets/discount_card.dart';
 
@@ -17,15 +25,89 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Пример данных (в будущем можно заменить данными с сервера)
-  String tableName = "PS3 Stol1";
-  String pricePerHour = "1 saat - 3 azn";
+  InfoSchedule? _info; // ← убрал late, добавил ?
+  Service? _service; // ← тоже nullable
+  Timer? _timer;
+  AppConfig? _appConfig;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadInfo();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _loadInfo());
+  }
+
+  Future<void> _loadInfo() async {
+    try {
+      _appConfig = await ConfigService.loadConfig();
+      _service = await Service.create();
+      final info = await _service!.getInfoSchedule(); // ← await вместо then
+      setState(() {
+        _info = info;
+      });
+      _saveSettings(_appConfig, info);
+    } catch (e) {
+      debugPrint("Ошибка при загрузке info: $e");
+    }
+  }
+
+  Future<void> _saveSettings(AppConfig? conf, InfoSchedule info) async {
+    try {
+      SettingsDto c = info.settings;
+      bool save = false;
+      if (c.priceHiddenTime != conf!.priceHiddenTime) save = true;
+      if (c.version != conf.newVersion) save = true;
+      if (c.updateUrl != conf.updateUrl) save = true;
+      if (save) {
+        AppConfig config = AppConfig(
+          apiUrl: conf.apiUrl,
+          updateUrl: c.updateUrl,
+          deviceId: conf.deviceId,
+          version: conf.version,
+          newVersion: c.version,
+          priceHiddenTime: c.priceHiddenTime,
+        );
+        await ConfigService.saveConfig(config);
+      }
+    } catch (e) {
+      debugPrint("Ошибка при записи настроек info: $e");
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel(); // ← не забудь отменить таймер
+    super.dispose();
+  }
+
+  bool isHiddenTimePanel() {
+    if (!_info!.done) return false;
+    Duration duration = Duration(minutes: _appConfig!.priceHiddenTime);
+    if (_info!.endTime.add(duration).isBefore(DateTime.now())) return true;
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
+    // Показываем загрузку пока данные не загружены
+    if (_info == null) {
+      return Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/background.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: const Center(
+            child: CircularProgressIndicator(color: AppColors.green),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: SizedBox.expand(
-        // ← растягивает фон на весь экран
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -39,9 +121,9 @@ class _HomePageState extends State<HomePage> {
                 Align(
                   alignment: Alignment.topRight,
                   child: Padding(
-                    padding: EdgeInsetsGeometry.all(40),
+                    padding: const EdgeInsets.all(40), // ← исправил
                     child: Container(
-                      height: Utils.getHeightSize(context, 80),
+                      height: Utils.getHeightSize(context, 100),
                       width: Utils.getHeightSize(context, 250),
                       decoration: BoxDecoration(
                         color: AppColors.gradientBlueLight,
@@ -49,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                           Radius.circular(Utils.getHeightSize(context, 10)),
                         ),
                         border: Border.all(width: 2, color: Colors.white12),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: AppColors.gradientBlueLightShadow,
                             blurRadius: 5,
@@ -58,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      child: ClockWidget(),
+                      child: const ClockWidget(),
                     ),
                   ),
                 ),
@@ -71,11 +153,24 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.5,
-                              height: Utils.getHeightSize(context, 100),
+                              height: Utils.getHeightSize(context, 140),
                               child: NeumorphicCard(
-                                child: Text(
-                                  tableName,
-                                  style: AppTextStyles.title(context),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      _info!.clubName,
+                                      // ← теперь безопасно использовать
+                                      style: AppTextStyles.clubName(context),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      _info!.displayText,
+                                      // ← теперь безопасно использовать
+                                      style: AppTextStyles.title(context),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -85,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                               height: Utils.getHeightSize(context, 50),
                               child: NeumorphicCard(
                                 child: Text(
-                                  pricePerHour,
+                                  '1saat ${_info!.tablePricePerHour.toStringAsFixed(2)} azn',
                                   style: AppTextStyles.subtitle(context),
                                 ),
                               ),
@@ -94,26 +189,26 @@ class _HomePageState extends State<HomePage> {
                             Expanded(
                               child: Row(
                                 children: [
-                                  // Блок со скидками
-                                  Expanded(child: DiscountCard()),
+                                  const Expanded(child: DiscountCard()),
                                   const SizedBox(width: 40),
-
-                                  // Средний блок (например, цена за час)
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Flexible(
-                                          flex: 0,
-                                          child: GamePriceCard(),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                                  !isHiddenTimePanel()
+                                      ? Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Flexible(
+                                                flex: 0,
+                                                child: GamePriceCard(
+                                                  info: _info!,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : Spacer(),
                                   const SizedBox(width: 40),
-
-                                  // Блок с продажами
-                                  Expanded(child: SalesCard()),
+                                  const Expanded(child: SalesCard()),
                                 ],
                               ),
                             ),
@@ -123,6 +218,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+                _info!.blocked ? BlockedCard() : SizedBox.shrink(),
               ],
             ),
           ),

@@ -19,18 +19,20 @@ class SalesCard extends StatefulWidget {
 class _SalesCardState extends State<SalesCard> {
   List<Sales> _sales = [];
   Timer? _timer;
+  late Service _service;
 
   @override
   void initState() {
     super.initState();
     _loadSales();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _loadSales());
+    _timer = Timer.periodic(const Duration(seconds: 20), (_) => _loadSales());
   }
 
   Future<void> _loadSales() async {
+    _service = await Service.create();
     try {
       setState(() {
-        Service().getSales().then((value) => _sales = value);
+        _service.getSales().then((value) => _sales = value);
       });
     } catch (e) {
       // можно добавить лог или Snackbar

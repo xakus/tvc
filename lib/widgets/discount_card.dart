@@ -11,6 +11,7 @@ import '../theme/app_text_styles.dart';
 
 class DiscountCard extends StatefulWidget {
   const DiscountCard({super.key});
+
   @override
   State<DiscountCard> createState() => _DiscountCardState();
 }
@@ -18,18 +19,23 @@ class DiscountCard extends StatefulWidget {
 class _DiscountCardState extends State<DiscountCard> {
   List<Discount> _discount = [];
   Timer? _timer;
+  late Service _service;
 
   @override
   void initState() {
     super.initState();
     _loadDiscount();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _loadDiscount());
+    _timer = Timer.periodic(
+      const Duration(seconds: 20),
+      (_) => _loadDiscount(),
+    );
   }
 
   Future<void> _loadDiscount() async {
+    _service = await Service.create();
     try {
       setState(() {
-        Service().getDiscount().then((value) => _discount = value);
+        _service.getDiscounts().then((value) => _discount = value);
       });
     } catch (e) {
       // можно добавить лог или Snackbar
