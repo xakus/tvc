@@ -48,7 +48,7 @@ class _ClockWidgetState extends State<ClockWidget> {
   @override
   Widget build(BuildContext context) {
     final timeString =
-        "${_now.hour.toString().padLeft(2, '0')}:${_now.minute.toString().padLeft(2, '0')}:${_now.second.toString().padLeft(2, '0')}";
+        "${_now.hour.toString().padLeft(2, '0')}:${_now.minute.toString().padLeft(2, '0')}";
     final dateString =
         "${_now.day.toString().padLeft(2, '0')}/${_now.month.toString().padLeft(2, '0')}/${_now.year}";
     final weekDayString = _weekDaysAZ[_now.weekday - 1]; // weekday: 1-7

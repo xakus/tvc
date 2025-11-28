@@ -24,7 +24,7 @@ Future<void> main() async {
     await windowManager.show();
     await windowManager.focus();
   });
-  runApp(const TVApp());
+  runApp(MouseRegion(cursor: SystemMouseCursors.none, child: TVApp()));
 }
 
 class TVApp extends StatelessWidget {
