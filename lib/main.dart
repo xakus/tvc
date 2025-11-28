@@ -16,6 +16,9 @@ Future<void> main() async {
     center: true,
     backgroundColor: Colors.transparent,
     titleBarStyle: TitleBarStyle.normal,
+    fullScreen: true,
+    skipTaskbar: true,
+    windowButtonVisibility: false,
   );
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
