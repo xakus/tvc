@@ -15,7 +15,7 @@ class ConfigService {
       print('Файл не существует или пустой, создаем с дефолтными значениями');
 
       final defaultConfig = AppConfig(
-        apiUrl: "http://192.168.1.123:8899",
+        apiUrl: "http://192.168.1.107:8899",
         updateUrl: "http://",
         priceHiddenTime: 3,
         deviceId: -3,
@@ -47,7 +47,7 @@ class ConfigService {
 
       // Создаем дефолтный конфиг при ошибке
       final defaultConfig = AppConfig(
-        apiUrl: "http://192.168.1.123:8899",
+        apiUrl: "http://192.168.1.107:8899",
         updateUrl: "http://",
         priceHiddenTime: 3,
         deviceId: -3,
