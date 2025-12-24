@@ -60,7 +60,7 @@ class _ClockWidgetState extends State<ClockWidget> {
 
         Text(weekDayString, style: AppTextStyles.weekName(context)),
 
-        Text(timeString, style: AppTextStyles.time(context)),
+        //Text(timeString, style: AppTextStyles.time(context)),
       ],
     );
   }

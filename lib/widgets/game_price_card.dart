@@ -16,7 +16,7 @@ class GamePriceCard extends StatelessWidget {
       children: [
         SizedBox(
           height: Utils.getHeightSize(context, 60),
-          child: NeumorphicCard(
+          child: NeoCard(
             child: Text(
               info.done
                   ? "${info.startTime.hour.toString().padLeft(2, '0')}:${info.startTime.minute.toString().padLeft(2, '0')}---${info.endTime.hour.toString().padLeft(2, '0')}:${info.endTime.minute.toString().padLeft(2, '0')}"
@@ -28,7 +28,7 @@ class GamePriceCard extends StatelessWidget {
         SizedBox(height: Utils.getHeightSize(context, 10)),
         SizedBox(
           height: Utils.getHeightSize(context, 80),
-          child: NeumorphicCard(
+          child: NeoCard(
             child: (info.done || info.unlimit)
                 ? Text(
                     "${(info.timeLeft / 60).toInt()} saat ${info.timeLeft % 60} dəqiqə oynamısız",
@@ -43,7 +43,7 @@ class GamePriceCard extends StatelessWidget {
         SizedBox(height: Utils.getHeightSize(context, 10)),
         SizedBox(
           height: Utils.getHeightSize(context, 130),
-          child: NeumorphicCard(
+          child: NeoCard(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

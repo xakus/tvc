@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.all(40), // ← исправил
                     child: Container(
                       height: Utils.getHeightSize(context, 100),
-                      width: Utils.getHeightSize(context, 250),
+                      width: Utils.getHeightSize(context, 350),
                       decoration: BoxDecoration(
                         color: AppColors.gradientBlueLight,
                         borderRadius: BorderRadius.all(
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.5,
                               height: Utils.getHeightSize(context, 140),
-                              child: NeumorphicCard(
+                              child: NeoCard(
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -178,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.33,
                               height: Utils.getHeightSize(context, 50),
-                              child: NeumorphicCard(
+                              child: NeoCard(
                                 child: Text(
                                   '1saat ${_info!.tablePricePerHour.toStringAsFixed(2)} azn',
                                   style: AppTextStyles.subtitle(context),

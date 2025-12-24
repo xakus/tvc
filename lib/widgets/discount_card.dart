@@ -61,7 +61,7 @@ class _DiscountCardState extends State<DiscountCard> {
             height: Utils.getHeightSize(context, 55),
             width: double.infinity,
             alignment: Alignment.center,
-            child: NeumorphicCard(
+            child: NeoCard(
               child: Text(
                 "Endirimlər",
                 style: AppTextStyles.menuTitle(context),
@@ -82,7 +82,7 @@ class _DiscountCardState extends State<DiscountCard> {
                     vertical: Utils.getHeightSize(context, 5),
                   ),
                   child: SizedBox(
-                    height: Utils.getHeightSize(context, 35),
+                    height: Utils.getHeightSize(context, 48),
                     child: ListElement(
                       name: _discount[index].title,
                       number: "${_discount[index].percent}%",

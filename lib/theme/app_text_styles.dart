@@ -46,7 +46,7 @@ class AppTextStyles {
 
   static TextStyle menuName(BuildContext context) => TextStyle(
     color: Colors.white,
-    fontSize: _getFontSize(context, 25),
+    fontSize: _getFontSize(context, 28),
     fontFamily: 'AlumniSans',
     fontWeight: FontWeight.w600,
     height: 0.1,
@@ -54,7 +54,7 @@ class AppTextStyles {
 
   static TextStyle menuPercent(BuildContext context) => TextStyle(
     color: Colors.white,
-    fontSize: _getFontSize(context, 25),
+    fontSize: _getFontSize(context, 28),
     fontFamily: "AlumniSans",
     fontWeight: FontWeight.w800,
     height: 1,
@@ -109,14 +109,14 @@ class AppTextStyles {
 
   static TextStyle date(BuildContext context) => TextStyle(
     color: AppColors.darkLight,
-    fontSize: _getFontSize(context, 23),
+    fontSize: _getFontSize(context, 28),
     fontWeight: FontWeight.w600,
     height: .9,
   );
 
   static TextStyle weekName(BuildContext context) => TextStyle(
     color: AppColors.blue,
-    fontSize: _getFontSize(context, 18),
+    fontSize: _getFontSize(context, 28),
     fontFamily: 'MartianMono',
     fontWeight: FontWeight.w500,
     height: .9,

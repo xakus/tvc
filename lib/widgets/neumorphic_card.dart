@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../models/utils.dart';
 import '../theme/app_colors.dart';
 
-class NeumorphicCard extends StatelessWidget {
+class NeoCard extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry padding;
   late double borderRadius;
   final double borderWidth;
   final bool center;
 
-  NeumorphicCard({
+  NeoCard({
     super.key,
     required this.child,
     this.padding = const EdgeInsets.all(0),
@@ -32,25 +32,37 @@ class NeumorphicCard extends StatelessWidget {
         borderRadius: borderRadius,
         borderWidth: borderWidth,
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadius),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-          child: Container(
-            padding: padding,
-            decoration: BoxDecoration(
-              color: AppColors.background,
-              borderRadius: BorderRadius.circular(borderRadius),
-            ),
-            child: center
+
+      child: Container(
+        decoration: BoxDecoration(color: Colors.black.withAlpha(222), borderRadius: BorderRadius.circular(borderRadius),),
+        child: center
                 ? Center(child: child)
                 : Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Align(alignment: Alignment.centerLeft, child: child),
                   ),
-          ),
-        ),
       ),
+      // ClipRRect(
+      //   borderRadius: BorderRadius.circular(borderRadius),
+      //   child:
+      //   BackdropFilter(
+      //     //filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+      //     filter: ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.darken),
+      //     child: Container(
+      //       padding: padding,
+      //       decoration: BoxDecoration(
+      //         color: AppColors.background,
+      //         borderRadius: BorderRadius.circular(borderRadius),
+      //       ),
+      //       child: center
+      //           ? Center(child: child)
+      //           : Padding(
+      //               padding: const EdgeInsets.symmetric(horizontal: 20),
+      //               child: Align(alignment: Alignment.centerLeft, child: child),
+      //             ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

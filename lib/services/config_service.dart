@@ -8,44 +8,60 @@ class ConfigService {
 
   /// Загружает конфиг, создаёт его, если отсутствует
   static Future<AppConfig> loadConfig() async {
-    final file = await _getConfigFile();
-
-    // Проверяем существует ли файл И не пустой ли он
-    if (!await file.exists() || (await file.length()) == 0) {
-      print('Файл не существует или пустой, создаем с дефолтными значениями');
-
-      final defaultConfig = AppConfig(
-        apiUrl: "http://192.168.1.107:8899",
-        updateUrl: "http://",
-        priceHiddenTime: 3,
-        deviceId: -3,
-        version: 1,
-        newVersion: 1,
-      );
-
-      // Сохраняем дефолтный конфиг
-      final jsonString = jsonEncode(defaultConfig.toJson());
-      await file.writeAsString(jsonString, flush: true);
-
-      print('Записано в файл: $jsonString');
-
-      return defaultConfig;
-    }
-
     try {
-      final content = await file.readAsString();
-      // print('Прочитано из файла: $content');
+      final file = await _getConfigFile();
 
-      if (content.isEmpty) {
-        throw FormatException('Файл пустой');
+      // Проверяем существует ли файл И не пустой ли он
+      if (!await file.exists() || (await file.length()) == 0) {
+        print('Файл не существует или пустой, создаем с дефолтными значениями');
+
+        final defaultConfig = AppConfig(
+          apiUrl: "http://192.168.1.107:8899",
+          updateUrl: "http://",
+          priceHiddenTime: 3,
+          deviceId: -3,
+          version: 1,
+          newVersion: 1,
+        );
+
+        // Сохраняем дефолтный конфиг
+        final jsonString = jsonEncode(defaultConfig.toJson());
+        await file.writeAsString(jsonString, flush: true);
+
+        print('Записано в файл: $jsonString');
+
+        return defaultConfig;
       }
 
-      final jsonData = jsonDecode(content);
-      return AppConfig.fromJson(jsonData);
-    } catch (e) {
-      print('Ошибка чтения файла: $e');
+      try {
+        final content = await file.readAsString();
+        // print('Прочитано из файла: $content');
 
-      // Создаем дефолтный конфиг при ошибке
+        if (content.isEmpty) {
+          throw FormatException('Файл пустой');
+        }
+
+        final jsonData = jsonDecode(content);
+        return AppConfig.fromJson(jsonData);
+      } catch (e) {
+        print('Ошибка чтения файла: $e');
+
+        // Создаем дефолтный конфиг при ошибке
+        final defaultConfig = AppConfig(
+          apiUrl: "http://192.168.1.107:8899",
+          updateUrl: "http://",
+          priceHiddenTime: 3,
+          deviceId: -3,
+          version: 1,
+          newVersion: 1,
+        );
+
+        final jsonString = jsonEncode(defaultConfig.toJson());
+        await file.writeAsString(jsonString, flush: true);
+
+        return defaultConfig;
+      }
+    }catch(e){
       final defaultConfig = AppConfig(
         apiUrl: "http://192.168.1.107:8899",
         updateUrl: "http://",
@@ -54,10 +70,6 @@ class ConfigService {
         version: 1,
         newVersion: 1,
       );
-
-      final jsonString = jsonEncode(defaultConfig.toJson());
-      await file.writeAsString(jsonString, flush: true);
-
       return defaultConfig;
     }
   }

@@ -58,7 +58,7 @@ class _SalesCardState extends State<SalesCard> {
             height: Utils.getHeightSize(context, 55),
             width: double.infinity,
             alignment: Alignment.center,
-            child: NeumorphicCard(
+            child: NeoCard(
               child: Text("Qiymətlər", style: AppTextStyles.menuTitle(context)),
             ),
           ),
@@ -77,7 +77,7 @@ class _SalesCardState extends State<SalesCard> {
                     vertical: Utils.getHeightSize(context, 5),
                   ),
                   child: SizedBox(
-                    height: Utils.getHeightSize(context, 35),
+                    height: Utils.getHeightSize(context, 48),
                     child: ListElement(
                       name: item.product,
                       number: "${item.price.toStringAsFixed(2)} azn",
