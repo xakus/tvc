@@ -38,9 +38,9 @@ class AppTextStyles {
 
   static TextStyle menuTitle(BuildContext context) => TextStyle(
     color: AppColors.green,
-    fontSize: _getFontSize(context, 60),
-    fontFamily: 'AlumniSans',
-    fontWeight: FontWeight.w900,
+    fontSize: _getFontSize(context, 48),
+    fontFamily: 'Tektur',
+    fontWeight: FontWeight.w800,
     height: 0.1,
   );
 

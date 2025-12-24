@@ -14,11 +14,11 @@ Future<void> main() async {
     minimumSize: Size(1280, 720),
     size: Size(1920, 1080),
     center: true,
-    backgroundColor: Colors.transparent,
-    titleBarStyle: TitleBarStyle.normal,
-    fullScreen: true,
-    skipTaskbar: true,
-    windowButtonVisibility: false,
+    // backgroundColor: Colors.transparent,
+    // titleBarStyle: TitleBarStyle.normal,
+    // fullScreen: true,
+    // skipTaskbar: true,
+    // windowButtonVisibility: false,
   );
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();

@@ -15,6 +15,7 @@ import 'package:tvc/widgets/sales_card.dart';
 
 import '../models/info_schedule.dart';
 import '../models/utils.dart';
+import '../services/gpio_service.dart';
 import '../widgets/discount_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _loadInfo();
+    GpioService.setPi3(true);
     _timer = Timer.periodic(const Duration(seconds: 1), (_) => _loadInfo());
   }
 
@@ -46,6 +48,7 @@ class _HomePageState extends State<HomePage> {
         _info = info;
       });
       _saveSettings(_appConfig, info);
+      GpioService.setPi4(!info.done);
     } catch (e) {
       debugPrint("Ошибка при загрузке info: $e");
     }
@@ -77,6 +80,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     _timer?.cancel(); // ← не забудь отменить таймер
+    GpioService.setPi3(false);
+    GpioService.setPi4(false);
     super.dispose();
   }
 
