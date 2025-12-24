@@ -15,7 +15,7 @@ class ListElement extends StatelessWidget {
     required this.name,
     required this.number,
     this.height = 60,
-    this.padding = 20,
+    this.padding = 10,
     this.numWidth = 120,
   });
 
@@ -26,7 +26,7 @@ class ListElement extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            flex: 40,
+            flex: 35,
             child: NeoCard(
               center: false,
               child: Text(name, style: AppTextStyles.menuName(context)),
@@ -34,7 +34,7 @@ class ListElement extends StatelessWidget {
           ),
           SizedBox(width: Utils.getHeightSize(context, padding)),
           Expanded(
-            flex: 11,
+            flex: 10,
             child: NeoCard(
               child: Text('${number}', style: AppTextStyles.menuPercent(context)),
             ),

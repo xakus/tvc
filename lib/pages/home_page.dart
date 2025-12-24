@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                               height: Utils.getHeightSize(context, 50),
                               child: NeoCard(
                                 child: Text(
-                                  '1saat ${_info!.tablePricePerHour.toStringAsFixed(2)} azn',
+                                  '1 saat ${_info!.tablePricePerHour.toStringAsFixed(2)} azn',
                                   style: AppTextStyles.subtitle(context),
                                 ),
                               ),

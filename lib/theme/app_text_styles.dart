@@ -46,18 +46,20 @@ class AppTextStyles {
 
   static TextStyle menuName(BuildContext context) => TextStyle(
     color: Colors.white,
-    fontSize: _getFontSize(context, 28),
+    fontSize: _getFontSize(context, 40),
     fontFamily: 'AlumniSans',
     fontWeight: FontWeight.w600,
     height: 0.1,
+    overflow: TextOverflow.ellipsis,
   );
 
   static TextStyle menuPercent(BuildContext context) => TextStyle(
     color: Colors.white,
-    fontSize: _getFontSize(context, 28),
+    fontSize: _getFontSize(context, 33),
     fontFamily: "AlumniSans",
     fontWeight: FontWeight.w800,
     height: 1,
+    overflow: TextOverflow.ellipsis,
   );
 
   static TextStyle menuPrice(BuildContext context) => TextStyle(
