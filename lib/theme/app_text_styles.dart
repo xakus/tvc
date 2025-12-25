@@ -66,7 +66,7 @@ class AppTextStyles {
     color: AppColors.blue,
     fontSize: _getFontSize(context, 25),
     fontFamily: 'AlumniSans',
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w500,
     height: 1,
   );
 
@@ -82,7 +82,7 @@ class AppTextStyles {
     color: AppColors.green,
     fontSize: _getFontSize(context, 70),
     fontFamily: 'AlumniSans',
-    fontWeight: FontWeight.w900,
+    fontWeight: FontWeight.w700,
     height: 0.9,
   );
 
@@ -90,7 +90,7 @@ class AppTextStyles {
     color: AppColors.green,
     fontSize: _getFontSize(context, 50),
     fontFamily: 'AlumniSans',
-    fontWeight: FontWeight.w900,
+    fontWeight: FontWeight.w600,
     height: 1,
   );
 

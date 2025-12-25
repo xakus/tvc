@@ -30,12 +30,12 @@ class GamePriceCard extends StatelessWidget {
           height: Utils.getHeightSize(context, 80),
           child: NeoCard(
             child: (info.done || info.unlimit)
-                ? Text(
-                    "${(info.timeLeft / 60).toInt()} saat ${info.timeLeft % 60} dəqiqə oynamısız",
+                ? Text(info.timeLeft>60?
+                    "${(info.timeLeft / 60).toInt()} saat ${info.timeLeft % 60} dəqiqə oynamısız":"${info.timeLeft % 60} dəqiqə oynamısız",
                     style: AppTextStyles.gamePrice(context),
                   )
-                : Text(
-                    "${(info.timeLeft / 60).toInt()} saat ${info.timeLeft % 60} dəqiqə qalıb",
+                : Text(info.timeLeft>60?
+                    "${(info.timeLeft / 60).toInt()} saat ${info.timeLeft % 60} dəqiqə qalıb":"${info.timeLeft % 60} dəqiqə qalıb",
                     style: AppTextStyles.gamePrice(context),
                   ),
           ),
@@ -53,8 +53,8 @@ class GamePriceCard extends StatelessWidget {
                         style: AppTextStyles.gameDiscount(context),
                       )
                     : SizedBox.shrink(),
-                Text(
-                  "${(info.totalPrice / 100).toInt()} manat ${(info.totalPrice % 100).toInt()} qəpik",
+                Text(info.totalPrice >=100?
+                  "${(info.totalPrice / 100).toInt()} manat ${(info.totalPrice % 100).toInt()} qəpik": "${(info.totalPrice % 100).toInt()} qəpik",
                   style: AppTextStyles.gameTime(context),
                 ),
               ],
