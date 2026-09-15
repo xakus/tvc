@@ -43,3 +43,16 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# --- PS Club: секреты и ключи (spec/01_security.md R-SEC-40) ---
+.env
+*.env
+*.pem
+*.jks
+*.keystore
+key.properties
+google-services.json
+GoogleService-Info.plist
+firebase-service-account.json
+/config.json
+!/config.example.json

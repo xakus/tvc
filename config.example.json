@@ -1,0 +1,6 @@
+{
+  "_comment": "Пример /etc/tvc/config.json (spec/50_tvc.md R-TVC-4). Реальный файл с deviceToken в git не коммитится.",
+  "apiUrl": "http://192.168.1.107:8899",
+  "deviceToken": "",
+  "gpioPin": 12
+}

@@ -1,0 +1,15 @@
+{
+  "_endpoint": "POST /api/v1/device/pairing",
+  "_status": 201,
+  "success": true,
+  "code": "OK",
+  "message": "OK",
+  "language": "az",
+  "data": {
+    "code": "482913",
+    "expiresAt": "2026-09-14T14:40:00+04:00",
+    "pollIntervalSec": 3
+  },
+  "correlationId": "cdb554a7-6387-5382-ac9a-870bb056acc5",
+  "serverTime": "2026-09-14T14:30:00+04:00"
+}

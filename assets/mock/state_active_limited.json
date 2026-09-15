@@ -1,0 +1,116 @@
+{
+  "_endpoint": "GET /api/v1/device/state",
+  "_status": 200,
+  "success": true,
+  "code": "OK",
+  "message": "OK",
+  "language": "az",
+  "data": {
+    "tableId": 102,
+    "name": "PS-2",
+    "displayText": "Sony PS5 · 4K",
+    "pricePerHourQepik": 500,
+    "active": true,
+    "blockPs": false,
+    "blockText": null,
+    "blockPending": false,
+    "deviceOnline": true,
+    "status": "ACTIVE_LIMITED",
+    "session": {
+      "sessionId": "5e550102-0914-4ac7-8000-000000000102",
+      "mode": "TIME",
+      "startedAt": "2026-09-14T13:50:00+04:00",
+      "plannedEndAt": "2026-09-14T15:50:00+04:00",
+      "timeSetMinutes": 120,
+      "playedMinutes": 40,
+      "remainingMinutes": 80,
+      "basePriceQepik": 333,
+      "discountPercent": 10,
+      "currentPriceQepik": 300,
+      "salesTotalQepik": 350,
+      "paidQepik": null,
+      "employeeId": "6b1f0000-0000-4000-8000-000000000001",
+      "sales": [
+        {
+          "saleId": "5a1e0102-0914-4000-8000-00000000a000",
+          "productId": 56,
+          "productName": "Çay",
+          "priceQepik": 100,
+          "quantity": 2,
+          "totalQepik": 200,
+          "soldAt": "2026-09-14T14:05:00+04:00"
+        },
+        {
+          "saleId": "5a1e0102-0914-4000-8000-00000000a001",
+          "productId": 57,
+          "productName": "Snickers",
+          "priceQepik": 150,
+          "quantity": 1,
+          "totalQepik": 150,
+          "soldAt": "2026-09-14T14:20:00+04:00"
+        }
+      ]
+    },
+    "reservation": null,
+    "lastReceipt": null,
+    "serverTime": "2026-09-14T14:30:00+04:00",
+    "idle": {
+      "discounts": [
+        {
+          "name": "Bazar ertəsi 10–18",
+          "percent": 10,
+          "weekDay": "MONDAY",
+          "timeFrom": "10:00",
+          "timeTo": "18:00"
+        },
+        {
+          "name": "Bazar günü",
+          "percent": 5,
+          "weekDay": "SUNDAY",
+          "timeFrom": null,
+          "timeTo": null
+        },
+        {
+          "name": "2 saat+",
+          "percent": 5,
+          "playTimeMinutes": 120
+        },
+        {
+          "name": "3 saat+",
+          "percent": 10,
+          "playTimeMinutes": 180
+        }
+      ],
+      "products": [
+        {
+          "name": "Fıstıq",
+          "priceQepik": 300
+        },
+        {
+          "name": "Çay",
+          "priceQepik": 100
+        },
+        {
+          "name": "Snickers",
+          "priceQepik": 150
+        },
+        {
+          "name": "Kalyan",
+          "priceQepik": 1500
+        },
+        {
+          "name": "Su",
+          "priceQepik": 80
+        }
+      ],
+      "productsDisplayMode": "ALL_PAGED",
+      "productsPerPage": 12,
+      "pageIntervalSec": 8,
+      "priceHidden": false
+    },
+    "language": "az",
+    "clubName": "PS Club Nizami"
+  },
+  "correlationId": "2935b0c4-16be-5150-9a6c-0e7b9482eab3",
+  "serverTime": "2026-09-14T14:30:00+04:00"
+}

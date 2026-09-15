@@ -1,0 +1,82 @@
+{
+  "_endpoint": "GET /api/v1/device/state",
+  "_status": 200,
+  "success": true,
+  "code": "OK",
+  "message": "OK",
+  "language": "az",
+  "data": {
+    "tableId": 104,
+    "name": "PS-4",
+    "displayText": "Sony PS4",
+    "pricePerHourQepik": 300,
+    "active": true,
+    "blockPs": true,
+    "blockText": "Ремонт до пятницы",
+    "blockPending": false,
+    "deviceOnline": true,
+    "status": "BLOCKED",
+    "session": null,
+    "reservation": null,
+    "lastReceipt": null,
+    "serverTime": "2026-09-14T14:30:00+04:00",
+    "idle": {
+      "discounts": [
+        {
+          "name": "Bazar ertəsi 10–18",
+          "percent": 10,
+          "weekDay": "MONDAY",
+          "timeFrom": "10:00",
+          "timeTo": "18:00"
+        },
+        {
+          "name": "Bazar günü",
+          "percent": 5,
+          "weekDay": "SUNDAY",
+          "timeFrom": null,
+          "timeTo": null
+        },
+        {
+          "name": "2 saat+",
+          "percent": 5,
+          "playTimeMinutes": 120
+        },
+        {
+          "name": "3 saat+",
+          "percent": 10,
+          "playTimeMinutes": 180
+        }
+      ],
+      "products": [
+        {
+          "name": "Fıstıq",
+          "priceQepik": 300
+        },
+        {
+          "name": "Çay",
+          "priceQepik": 100
+        },
+        {
+          "name": "Snickers",
+          "priceQepik": 150
+        },
+        {
+          "name": "Kalyan",
+          "priceQepik": 1500
+        },
+        {
+          "name": "Su",
+          "priceQepik": 80
+        }
+      ],
+      "productsDisplayMode": "ALL_PAGED",
+      "productsPerPage": 12,
+      "pageIntervalSec": 8,
+      "priceHidden": false
+    },
+    "language": "az",
+    "clubName": "PS Club Nizami"
+  },
+  "correlationId": "d0b21667-785e-5af3-9223-2b8af2ab1fc8",
+  "serverTime": "2026-09-14T14:30:00+04:00"
+}

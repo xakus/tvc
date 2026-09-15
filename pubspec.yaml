@@ -33,6 +33,7 @@ flutter:
     - assets/images/background.png
     - assets/images/bg1.jpg
     - assets/images/blocked.png
+    - assets/mock/
   fonts:
     - family: AlumniSansCollegiateOne
       fonts:

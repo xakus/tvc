@@ -1,0 +1,18 @@
+# Конфигурация gitleaks (spec/01_security.md R-SEC-40, plans/00 раздел 0.6).
+# Правила — стандартные gitleaks; ниже только allowlist для мест, где секреты заведомо
+# фиктивные: демо-фикстуры, примеры OpenAPI, dev-стенд с несекретными паролями, тесты маскирования.
+# Реальные секреты в репозиторий не попадают никогда (Docker secrets / .env вне git).
+
+title = "PS Club Management System — gitleaks"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Фиктивные секреты: демо-данные, примеры контрактов, dev-стенд, артефакты сборки"
+paths = [
+  '''assets/mock/.*\.json$''',
+  '''build/''',
+  '''\.dart_tool/''',
+  '''test/''',
+]

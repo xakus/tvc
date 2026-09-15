@@ -1,0 +1,103 @@
+{
+  "_endpoint": "GET /api/v1/device/state",
+  "_status": 200,
+  "success": true,
+  "code": "OK",
+  "message": "OK",
+  "language": "az",
+  "data": {
+    "tableId": 103,
+    "name": "PS-3",
+    "displayText": "Sony PS5 · VR",
+    "pricePerHourQepik": 700,
+    "active": true,
+    "blockPs": false,
+    "blockText": null,
+    "blockPending": false,
+    "deviceOnline": true,
+    "status": "ACTIVE_UNLIMITED",
+    "session": {
+      "sessionId": "5e550103-0914-4ac7-8000-000000000103",
+      "mode": "UNLIMITED",
+      "startedAt": "2026-09-14T12:55:00+04:00",
+      "plannedEndAt": null,
+      "timeSetMinutes": null,
+      "playedMinutes": 95,
+      "remainingMinutes": null,
+      "basePriceQepik": 1108,
+      "discountPercent": 10,
+      "currentPriceQepik": 997,
+      "salesTotalQepik": 0,
+      "paidQepik": null,
+      "employeeId": "6b1f0000-0000-4000-8000-000000000001",
+      "sales": []
+    },
+    "reservation": {
+      "reservationId": "7e5e0103-2100-4000-8000-000000000002",
+      "reservedFrom": "2026-09-14T21:00:00+04:00",
+      "holdUntil": "2026-09-14T21:15:00+04:00",
+      "customerName": "Orxan",
+      "source": "OWNER"
+    },
+    "lastReceipt": null,
+    "serverTime": "2026-09-14T14:30:00+04:00",
+    "idle": {
+      "discounts": [
+        {
+          "name": "Bazar ertəsi 10–18",
+          "percent": 10,
+          "weekDay": "MONDAY",
+          "timeFrom": "10:00",
+          "timeTo": "18:00"
+        },
+        {
+          "name": "Bazar günü",
+          "percent": 5,
+          "weekDay": "SUNDAY",
+          "timeFrom": null,
+          "timeTo": null
+        },
+        {
+          "name": "2 saat+",
+          "percent": 5,
+          "playTimeMinutes": 120
+        },
+        {
+          "name": "3 saat+",
+          "percent": 10,
+          "playTimeMinutes": 180
+        }
+      ],
+      "products": [
+        {
+          "name": "Fıstıq",
+          "priceQepik": 300
+        },
+        {
+          "name": "Çay",
+          "priceQepik": 100
+        },
+        {
+          "name": "Snickers",
+          "priceQepik": 150
+        },
+        {
+          "name": "Kalyan",
+          "priceQepik": 1500
+        },
+        {
+          "name": "Su",
+          "priceQepik": 80
+        }
+      ],
+      "productsDisplayMode": "ALL_PAGED",
+      "productsPerPage": 12,
+      "pageIntervalSec": 8,
+      "priceHidden": false
+    },
+    "language": "az",
+    "clubName": "PS Club Nizami"
+  },
+  "correlationId": "0dc8eb71-66dc-582b-9d93-80f56e17e4c2",
+  "serverTime": "2026-09-14T14:30:00+04:00"
+}

@@ -1,16 +1,28 @@
-# projects
+# tvc — экран игрового стола (Orange Pi Zero 2W)
 
-A new Flutter project.
+Показывает состояние стола, цены, скидки, товары, итог сеанса; управляет питанием PlayStation по командам pscs. Ничего не вычисляет сам.
+Спецификация — [`../spec/50_tvc.md`](../spec/50_tvc.md), план — [`../plans/tvc_plan.md`](../plans/tvc_plan.md). Дизайн-токены зафиксированы в спецификации.
 
-## Getting Started
+Flutter 3.47 / Dart 3.13. Сервер: pscs (LAN); адрес находит по mDNS, токен получает при привязке кодом.
 
-This project is a starting point for a Flutter application.
+## Запуск
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+flutter pub get
+flutter run -d linux --dart-define=API_URL=http://192.168.1.107:8899 --dart-define=GPIO=stub   # на ноутбуке без реле
+flutter run --dart-define=API_MODE=mock              # без сервера: фикстуры assets/mock/ (демо-набор spec/03)
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Mock-сервер из контракта (когда бэкенд ещё не готов): `tool/mock-server.sh` (Prism на OpenAPI).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Проверки
+
+```bash
+flutter analyze
+flutter test
+dart run tool/validate_mocks.dart                    # фикстуры соответствуют OpenAPI
+```
+
+## Сборка
+
+См. раздел «Сборка» в плане. Секреты и `config.json` с токенами в git не коммитятся (`.gitignore`).

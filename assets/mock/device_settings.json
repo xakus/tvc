@@ -1,0 +1,18 @@
+{
+  "_endpoint": "GET /api/v1/device/settings",
+  "_status": 200,
+  "success": true,
+  "code": "OK",
+  "message": "OK",
+  "language": "az",
+  "data": {
+    "tvcVersionTarget": "2.0.3",
+    "tvcUpdateUrl": "https://releases.psclub.az/tvc/tvc-2.0.3.tar.gz",
+    "tvcUpdateSha256": "3b7f6a1c2e9d4f0a8b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f70",
+    "priceHiddenMinutes": 3,
+    "language": "az",
+    "serverTime": "2026-09-14T14:30:00+04:00"
+  },
+  "correlationId": "e8551a2b-1788-57cb-9660-5a3f5e7a108d",
+  "serverTime": "2026-09-14T14:30:00+04:00"
+}
