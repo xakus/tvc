@@ -3,6 +3,8 @@ import 'package:tvc/models/utils.dart';
 import 'package:tvc/theme/app_text_styles.dart';
 
 class BlockedCard extends StatelessWidget {
+  const BlockedCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

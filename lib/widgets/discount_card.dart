@@ -1,56 +1,27 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:tvc/widgets/auto_scroll_list.dart';
 import 'package:tvc/widgets/list_element.dart';
 import 'package:tvc/widgets/neumorphic_card.dart';
 
-import '../models/discount.dart';
+import '../models/device_state.dart';
 import '../models/utils.dart';
-import '../services/service.dart';
 import '../theme/app_text_styles.dart';
 
-class DiscountCard extends StatefulWidget {
-  const DiscountCard({super.key});
+/// Скидки клуба (`idle.discounts`, R-TVC-10): название и процент; при нехватке места — автопрокрутка.
+class DiscountCard extends StatelessWidget {
+  final List<IdleDiscount> discounts;
+  final String scrollMode;
 
-  @override
-  State<DiscountCard> createState() => _DiscountCardState();
-}
-
-class _DiscountCardState extends State<DiscountCard> {
-  List<Discount> _discount = [];
-  Timer? _timer;
-  late Service _service;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadDiscount();
-    _timer = Timer.periodic(
-      const Duration(seconds: 20),
-      (_) => _loadDiscount(),
-    );
-  }
-
-  Future<void> _loadDiscount() async {
-    _service = await Service.create();
-    try {
-      setState(() {
-        _service.getDiscounts().then((value) => _discount = value);
-      });
-    } catch (e) {
-      // можно добавить лог или Snackbar
-      debugPrint("Ошибка при загрузке sales: $e");
-    }
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
+  const DiscountCard({
+    super.key,
+    required this.discounts,
+    this.scrollMode = 'smooth',
+  });
 
   @override
   Widget build(BuildContext context) {
+    final rowHeight = Utils.getHeightSize(context, 48);
+    final rowPadding = Utils.getHeightSize(context, 5);
     return SizedBox(
       width: double.infinity,
       height: double.infinity,
@@ -71,21 +42,22 @@ class _DiscountCardState extends State<DiscountCard> {
 
           // Список, занимающий всё оставшееся пространство
           Expanded(
-            child: ListView.builder(
+            child: AutoScrollList(
+              key: ValueKey('discounts-${discounts.length}'),
               padding: EdgeInsets.symmetric(
                 vertical: Utils.getHeightSize(context, 10),
               ),
-              itemCount: _discount.length,
+              itemCount: discounts.length,
+              itemExtent: rowHeight + rowPadding * 2,
+              mode: scrollMode,
               itemBuilder: (context, index) {
                 return Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: Utils.getHeightSize(context, 5),
-                  ),
+                  padding: EdgeInsets.symmetric(vertical: rowPadding),
                   child: SizedBox(
-                    height: Utils.getHeightSize(context, 48),
+                    height: rowHeight,
                     child: ListElement(
-                      name: _discount[index].title,
-                      number: "${_discount[index].percent}%",
+                      name: discounts[index].name,
+                      number: "${discounts[index].percent}%",
                     ),
                   ),
                 );

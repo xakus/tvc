@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../models/utils.dart';
 import '../theme/app_colors.dart';
@@ -6,11 +5,10 @@ import '../theme/app_colors.dart';
 class NeoCard extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry padding;
-  late double borderRadius;
   final double borderWidth;
   final bool center;
 
-  NeoCard({
+  const NeoCard({
     super.key,
     required this.child,
     this.padding = const EdgeInsets.all(0),
@@ -20,7 +18,7 @@ class NeoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    borderRadius = Utils.getHeightSize(context, 10);
+    final borderRadius = Utils.getHeightSize(context, 10);
     return CustomPaint(
       painter: GradientBorderPainter(
         gradient: const LinearGradient(

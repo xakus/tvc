@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:window_manager/window_manager.dart';
 
+import 'localization/tvc_localization.dart';
 import 'pages/home_page.dart';
 import 'theme/app_theme.dart';
 
@@ -37,7 +39,16 @@ class TVApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      home: HomePage(),
+      // Тексты новых блоков — на языке клуба (R-TVC-10); словарь — localization/tvc_localization.dart
+      localizationsDelegates: const [
+        TvcLocalizationDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: TvcLocalizationDelegate.supportedLocales,
+      locale: const Locale('az'),
+      home: const HomePage(),
     );
   }
 }

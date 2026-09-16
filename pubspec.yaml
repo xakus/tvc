@@ -12,9 +12,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   dio: ^5.9.0
   window_manager: ^0.5.1
-  path_provider: ^2.1.1
 
   cupertino_icons: ^1.0.8
 

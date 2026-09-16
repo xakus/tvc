@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import '../theme/app_text_styles.dart';
 
 class ClockWidget extends StatefulWidget {
+  /// Источник текущего времени; тесты подменяют его фиксированной датой, чтобы эталонные снимки
+  /// (golden) не зависели от дня запуска.
+  static DateTime Function() now = DateTime.now;
+
   const ClockWidget({super.key});
 
   @override
@@ -29,12 +33,12 @@ class _ClockWidgetState extends State<ClockWidget> {
   @override
   void initState() {
     super.initState();
-    _now = DateTime.now();
+    _now = ClockWidget.now();
 
     // Таймер обновляет время каждую секунду
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        _now = DateTime.now();
+        _now = ClockWidget.now();
       });
     });
   }
@@ -47,8 +51,6 @@ class _ClockWidgetState extends State<ClockWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final timeString =
-        "${_now.hour.toString().padLeft(2, '0')}:${_now.minute.toString().padLeft(2, '0')}";
     final dateString =
         "${_now.day.toString().padLeft(2, '0')}/${_now.month.toString().padLeft(2, '0')}/${_now.year}";
     final weekDayString = _weekDaysAZ[_now.weekday - 1]; // weekday: 1-7

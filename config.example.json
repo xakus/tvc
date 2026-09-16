@@ -1,6 +1,7 @@
 {
-  "_comment": "Пример /etc/tvc/config.json (spec/50_tvc.md R-TVC-4). Реальный файл с deviceToken в git не коммитится.",
+  "_comment": "Пример /etc/tvc/config.json (spec/50_tvc.md R-TVC-4). Реальный файл с deviceToken в git не коммитится. language — необязательное переопределение языка клуба (az/ru/en); productsScroll — способ автопрокрутки списков: smooth (плавно) или step (сдвиг на строку, T-24).",
   "apiUrl": "http://192.168.1.107:8899",
   "deviceToken": "",
-  "gpioPin": 12
+  "gpioPin": 260,
+  "productsScroll": "smooth"
 }

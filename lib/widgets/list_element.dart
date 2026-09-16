@@ -36,7 +36,7 @@ class ListElement extends StatelessWidget {
           Expanded(
             flex: 10,
             child: NeoCard(
-              child: Text('${number}', style: AppTextStyles.menuPercent(context)),
+              child: Text(number, style: AppTextStyles.menuPercent(context)),
             ),
           ),
         ],
