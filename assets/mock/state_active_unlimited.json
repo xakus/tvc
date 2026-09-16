@@ -30,7 +30,8 @@
       "salesTotalQepik": 0,
       "paidQepik": null,
       "employeeId": "6b1f0000-0000-4000-8000-000000000001",
-      "sales": []
+      "sales": [],
+      "grandTotalQepik": 997
     },
     "reservation": {
       "reservationId": "7e5e0103-2100-4000-8000-000000000002",
