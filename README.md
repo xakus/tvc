@@ -62,3 +62,42 @@ Golden-тесты грузят реальные шрифты приложени�
 ## Сборка
 
 `flutter build linux`. Секреты и `config.json` с токенами в git не коммитятся (`.gitignore`).
+
+## Запуск на Orange Pi Zero 2W (тестовый стенд, до образа SD-карты из 3.4)
+
+Flutter не собирает Linux-бинарник под ARM64 с ноутбука — сборка **на самой плате** (Armbian/Ubuntu 24.04 arm64, 2 ГБ ОЗУ
+хватает, ~10 мин; на 1 ГБ — добавить swap):
+
+```bash
+sudo apt install -y git curl unzip clang cmake ninja-build pkg-config libgtk-3-dev libgpiod-dev
+git clone https://github.com/flutter/flutter.git -b stable ~/flutter && export PATH=$PATH:~/flutter/bin
+git clone git@github.com:xakus/tvc.git && cd tvc && flutter pub get && flutter build linux --release \
+    --dart-define=APP_VERSION=2.0.0
+sudo mkdir -p /opt/tvc /etc/tvc && sudo cp -r build/linux/arm64/release/bundle/* /opt/tvc/
+```
+
+`/etc/tvc/config.json` (0600): `apiUrl` — адрес pscs в сети клуба (по умолчанию `http://192.168.1.107:8899`, т.е.
+точка pscs на Orange Pi 5 с этим статическим IP), `deviceToken` — из привязки ниже, `gpioPin` — линия реле.
+Запуск: `/opt/tvc/tvc` (в X/Wayland-сессии; kiosk через `cage` и `tvc.service` — план 3.4).
+
+**Привязка экрана без club_control_app** (экран привязки в tvc — план 3.1; приложение сотрудника ещё на API v1) —
+тот же протокол, что делают tvc и club_control_app, руками через `curl` с любой машины в сети клуба:
+
+```bash
+P=http://192.168.1.107:8899/api/v1
+# 1. tvc-сторона: код привязки (TTL 10 мин)
+curl -s -X POST $P/device/pairing -H 'Content-Type: application/json' \
+     -d '{"fingerprint":"orangepi-zero2w-01","tvcVersion":"2.0.0"}'          # → {"code":"123456",...}
+# 2. Сотрудник (зарегистрирован в pscs и подтверждён владельцем в club_owner_app): токен
+T=$(curl -s -X POST $P/auth/sign-in -H 'Content-Type: application/json' \
+     -d '{"username":"<сотрудник>","password":"<пароль>","language":"ru"}' | grep -oE '"accessToken":"[^"]+"' | cut -d'"' -f4)
+# 3. Привязать код к столу (id стола — GET $P/tables с тем же токеном)
+curl -s -X POST $P/device/pairing/123456/bind -H "Authorization: Bearer $T" -H 'Content-Type: application/json' \
+     -d '{"tableId":1}'
+# 4. tvc-сторона: забрать токен экрана (отдаётся один раз) → в /etc/tvc/config.json "deviceToken"
+curl -s $P/device/pairing/123456
+```
+
+Сотрудника без club_control_app регистрируют так же: `POST $P/auth/sign-up` (поля — `SignUpRequest` в
+`pscs-v2.yaml`: логин, пароль, ФИО, телефон, ФИН, серия/номер паспорта, дата рождения, `clubCode`, язык), затем владелец
+подтверждает его в club_owner_app (Клуб → Сотрудники).
